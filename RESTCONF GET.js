@@ -1,19 +1,19 @@
 import xapi from 'xapi';
 
 // Configuration
-const switchIp = '169.254.1.254';  // Replace with your switch IP address
-const restconfUsername = 'username';  // Replace with your RESTCONF username
-const restconfPassword = 'password';  // Replace with your RESTCONF password
+const SWITCH_IP = '169.254.1.254';  // Replace with your switch IP address
+const USERNAME = 'username';  // Replace with your RESTCONF username
+const PASSWORD = 'password';  // Replace with your RESTCONF password
 
 // Function to get the hostname using RESTCONF
 function checkSwitch() {
-  const url = `https://${switchIp}/restconf/data/Cisco-IOS-XE-native:native/hostname`;
+  const url = `https://${SWITCH_IP}/restconf/data/Cisco-IOS-XE-native:native/hostname`;
 
   xapi.command('HttpClient Get', { 
     Url: url, 
     Header: [
       'Accept: application/yang-data+json',
-      `Authorization: Basic ${btoa(`${restconfUsername}:${restconfPassword}`)}`
+      `Authorization: Basic ${btoa(`${USERNAME}:${PASSWORD}`)}`
     ],
     AllowInsecureHTTPS: true
   })
